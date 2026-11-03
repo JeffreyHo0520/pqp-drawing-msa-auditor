@@ -1,0 +1,33 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Excel temporary and backup files
+~$*.xlsx
+~$*.xlsm
+*.xlsx.bak
+*.xlsm.bak
+
+# Audit output files & generated specs
+audit_report*.md
+audit_report*.json
+spec*.json
+spec.json
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
