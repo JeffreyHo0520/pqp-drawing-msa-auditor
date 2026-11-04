@@ -1,7 +1,7 @@
 # ==============================================================================
-# PQP Drawing & MSA Quality Inspection Suite - Windows Installer
+# PQP Drawing, Spec & PCB Quality Inspection Suite - Windows Installer
 # Supported Environments: Antigravity / Gemini CLI / Claude Code / Cursor / Codex
-# Skills: pqp-drawing-msa-auditor & drawing-spec-pqp-comparison
+# Skills: pqp-drawing-msa-auditor, drawing-spec-pqp-comparison, pcb-pqp-spec-comparison
 # ==============================================================================
 
 param(
@@ -15,7 +15,7 @@ $ErrorActionPreference = "Stop"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host "  PQP Drawing & MSA Quality Inspection Suite Installer    " -ForegroundColor Yellow
+Write-Host "  PQP Drawing, Spec & PCB Inspection Suite Installer      " -ForegroundColor Yellow
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 # Determine installation directory
@@ -43,7 +43,8 @@ if (-not $scriptRoot) {
 
 $skills = @(
     "pqp-drawing-msa-auditor",
-    "drawing-spec-pqp-comparison"
+    "drawing-spec-pqp-comparison",
+    "pcb-pqp-spec-comparison"
 )
 
 Write-Host "[2/3] Installing skills..." -ForegroundColor Gray
@@ -81,14 +82,17 @@ foreach ($skill in $skills) {
 
 Write-Host "==========================================================" -ForegroundColor Cyan
 if ($allOk) {
-    Write-Host "SUCCESS: PQP Drawing & MSA Skills installed successfully!" -ForegroundColor Green
+    Write-Host "SUCCESS: PQP Drawing, Spec & PCB Skills installed successfully!" -ForegroundColor Green
     Write-Host ""
     Write-Host "How to use in Antigravity / Claude Code / Codex:" -ForegroundColor Yellow
     Write-Host "  1. Slash commands:" -ForegroundColor White
     Write-Host "     /pqp-drawing-msa-auditor" -ForegroundColor Cyan
     Write-Host "     /drawing-spec-pqp-comparison" -ForegroundColor Cyan
+    Write-Host "     /pcb-pqp-spec-comparison" -ForegroundColor Cyan
     Write-Host "  2. CLI direct execution via uv:" -ForegroundColor White
     Write-Host "     uv run ~/.gemini/config/skills/pqp-drawing-msa-auditor/scripts/pqp_dwg_msa_auditor.py all --pqp PQP.xlsx --dwgs Drawing.pdf" -ForegroundColor Cyan
+    Write-Host "     uv run ~/.gemini/config/skills/drawing-spec-pqp-comparison/scripts/compare_dwg_pqp.py compare --pqp PQP.xlsx --dwgs Drawing.pdf --output report.md" -ForegroundColor Cyan
+    Write-Host "     uv run ~/.gemini/config/skills/pcb-pqp-spec-comparison/scripts/compare_pcb_pqp.py compare --spec Spec.pdf --pqp PQP.xlsx --qa QA.xls --fab FAB.pdf --output pcb_report.md" -ForegroundColor Cyan
 } else {
     Write-Host "WARNING: Some skill files could not be verified." -ForegroundColor Red
 }

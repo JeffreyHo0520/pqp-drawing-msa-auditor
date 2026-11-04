@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# PQP Drawing & MSA Quality Inspection Suite - Linux / macOS Installer
+# PQP Drawing, Spec & PCB Quality Inspection Suite - Linux / macOS Installer
 # Supported Environments: Antigravity / Claude Code / Codex / Cursor
-# Skills: pqp-drawing-msa-auditor & drawing-spec-pqp-comparison
+# Skills: pqp-drawing-msa-auditor, drawing-spec-pqp-comparison, pcb-pqp-spec-comparison
 # ==============================================================================
 
 set -euo pipefail
@@ -32,7 +32,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "=========================================================="
-echo "  PQP Drawing & MSA Quality Inspection Suite Installer    "
+echo "  PQP Drawing, Spec & PCB Inspection Suite Installer      "
 echo "=========================================================="
 
 if [[ -n "$TARGET_DIR" ]]; then
@@ -50,7 +50,7 @@ echo "[1/3] Destination: $DEST_BASE"
 mkdir -p "$DEST_BASE"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-SKILLS=("pqp-drawing-msa-auditor" "drawing-spec-pqp-comparison")
+SKILLS=("pqp-drawing-msa-auditor" "drawing-spec-pqp-comparison" "pcb-pqp-spec-comparison")
 
 echo "[2/3] Installing skills..."
 for skill in "${SKILLS[@]}"; do
@@ -85,14 +85,17 @@ done
 
 echo "=========================================================="
 if [[ "$ALL_OK" == true ]]; then
-  echo "SUCCESS: PQP Drawing & MSA Skills installed successfully!"
+  echo "SUCCESS: PQP Drawing, Spec & PCB Skills installed successfully!"
   echo ""
   echo "How to use in Antigravity / Claude Code / Codex:"
   echo "  1. Slash commands:"
   echo "     /pqp-drawing-msa-auditor"
   echo "     /drawing-spec-pqp-comparison"
+  echo "     /pcb-pqp-spec-comparison"
   echo "  2. CLI direct execution via uv:"
   echo "     uv run ~/.gemini/config/skills/pqp-drawing-msa-auditor/scripts/pqp_dwg_msa_auditor.py all --pqp PQP.xlsx --dwgs Drawing.pdf"
+  echo "     uv run ~/.gemini/config/skills/drawing-spec-pqp-comparison/scripts/compare_dwg_pqp.py compare --pqp PQP.xlsx --dwgs Drawing.pdf --output report.md"
+  echo "     uv run ~/.gemini/config/skills/pcb-pqp-spec-comparison/scripts/compare_pcb_pqp.py compare --spec Spec.pdf --pqp PQP.xlsx --qa QA.xls --fab FAB.pdf --output pcb_report.md"
 else
   echo "WARNING: Some skill files could not be verified."
 fi
